@@ -20,6 +20,8 @@ Neuron::Neuron(vector<Neuron*>* inputNeurons, vector<Neuron*>* outputNeurons){
 	momentum = 0;
 	lastEpoch = 0;
 	weights = new vector<double>();
+	value = -1.0;
+	threshhold = -1.0;
 
 	if (inputNeurons != NULL) {
 		srand(time(NULL));
@@ -60,4 +62,18 @@ void Neuron::setName(string name) {
 
 string Neuron::getName() {
 	return name;
+}
+
+double Neuron::feedForward(int epoch) {
+	if (epoch == lastEpoch || inputNeurons == NULL)
+		return getValue();
+
+	double sum = 0.0;
+
+	for (size_t i = 0; i < inputNeurons->size(); i++) {
+		sum += inputNeurons->at(i)->feedForward() * weights->at(i);
+	}
+
+	value = sum;
+	return value;
 }

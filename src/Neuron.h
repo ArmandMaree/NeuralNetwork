@@ -16,6 +16,8 @@ private:
 	int momentum;
 	int lastEpoch;
 	double output;
+	double value;
+	double threshhold;
 protected:
 
 public:
@@ -24,6 +26,9 @@ public:
 	~Neuron();
 	void setName(string name);
 	string getName();
+	void setValue(string name);
+	string getValue();
+	double feedForward(int epoch);
 };
 
 #endif

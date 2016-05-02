@@ -17,11 +17,13 @@ private:
 	unsigned int epochMax;
 	double learningRate;
 	double trainingError;
+	double trainingAccuracy;
 protected:
 
 public:
 	NeuralNetwork(int* topology, int numLevel);
 	~NeuralNetwork();
+	void feedForward(vector<double>* dataSet);
 };
 
 #endif

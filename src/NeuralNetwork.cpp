@@ -10,8 +10,9 @@ NeuralNetwork::NeuralNetwork(int* topology, int numLevels){
 	vector<Neuron*>* next = new vector<Neuron*>();
 	epochMax = 10000;
 	epochCounter = 0;
-	learningRate = 0.5;
+	learningRate = 0.1;
 	trainingError = 0.0;
+	trainingAccuracy = 90;
 
    	for (size_t i = 0; i < numLevels; i++) {
 		vector<Neuron*>* level = next;
@@ -59,5 +60,17 @@ NeuralNetwork::~NeuralNetwork() {
 		}
 
 		delete inputNeurons;
+	}
+}
+
+void NeuralNetwork::feedForward(vector<double>* dataSet) {
+	for (size_t i = 0; i < inputNeurons->size(); i++) {
+		inputNeurons->at(i)->setValue(dataSet->at(i));
+	}
+
+	epochCounter++;
+
+	for (size_t i = 0; i < outputNeurons->size(); i++) {
+		outputNeurons->at(i)->feedForward(epochCounter);
 	}
 }
