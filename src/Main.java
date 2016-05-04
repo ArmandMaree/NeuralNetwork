@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+import java.nio.file.Files;
+import java.nio.file.FileSystems;
 
 public class Main {
 	private static final int NUM_SESSIONS = 30;
@@ -74,18 +76,39 @@ public class Main {
 		normalize(distortedImages, min, max);
 		boolean stop = false;
 
+		try {
+			Files.delete(FileSystems.getDefault().getPath("NNStats.txt"));
+		} catch (Exception x) {
+		}
+
 		for (int i = 0; i < NUM_SESSIONS && !stop; i++) {
 			System.out.println("Session " + (i + 1));
 			shuffle(distortedImages);
 			nn.init();
 
-			for (int j = 0; j < distortedImages.size() * 0.6 && !stop; j++) {
+			for (int j = 0; j < Math.floor(distortedImages.size() * 0.6) && !stop; j++) {
 				nn.feedForward(distortedImages.get(j));
 				nn.backPropagation(distortedImages.get(j));
+
+				// if (j == 1)
+				// 	stop = true;
 			}
 
-//			if (i == 0)
-//				stop = true;
+			nn.init();
+
+			for (int j = (int)Math.ceil(distortedImages.size() * 0.6); j < Math.floor(distortedImages.size() * 0.8) && !stop; j++) {
+				nn.feedForward(distortedImages.get(j));
+			}
+
+			int testCorrect = nn.getNumCorrect();
+			nn.init();
+
+			for (int j = (int)Math.ceil(distortedImages.size() * 0.8); j < distortedImages.size() && !stop; j++) {
+				nn.feedForward(distortedImages.get(j));
+			}
+
+			int generalCorrect = nn.getNumCorrect();
+			nn.log(i + 1, testCorrect, generalCorrect);
 		}
 	}
 
@@ -101,7 +124,7 @@ public class Main {
 	}
 
 	public static void shuffle(ArrayList<ArrayList<Double>> distortedImages) {
-		System.out.println("Shuffling data...");
+		System.out.println("\tShuffling data...");
 		Random random = new Random();
 
 		for (int i = 0; i < distortedImages.size(); i++) {

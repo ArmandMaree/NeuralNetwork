@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by armandmaree on 2016/05/03.
@@ -13,7 +16,7 @@ public class NeuralNetwork {
 	private int numCorrect = 0;
 	private double trainingAccuracy = 0.99;
 	private double  learningRate = 0.1;
-	private double momentum = 0.1;
+	private double momentum = 0.5;
 	private int epochCounter;
 	private int maxEpoch = 20000;
 
@@ -87,6 +90,14 @@ public class NeuralNetwork {
 
 		if (targets.length != network.get(network.size() - 1).size())
 			hardMatch = false;
+	}
+
+	public void setNumCorrect (int numCorrect) {
+		this.numCorrect = numCorrect;
+	}
+
+	public int getNumCorrect () {
+		return numCorrect;
 	}
 
 	public void init() {
@@ -175,8 +186,10 @@ public class NeuralNetwork {
 		int hiddenLayerIndex = 1;
 		int outputLayerIndex = 2;
 		ArrayList<Double> outputErrorSignals = new ArrayList<>();
+		// System.out.println("OutputLayer:");
 
 		for (int i = 0; i < network.get(outputLayerIndex).size(); i++) { // iterate all output neurons
+			// System.out.println("\tNEURON: " + i);
 			double target = 0.0; // default target for a neuron is 0.0
 			double neuronValue = network.get(outputLayerIndex).get(i); // value of current neuron
 
@@ -189,9 +202,11 @@ public class NeuralNetwork {
 			ArrayList<Double> currNeuronWeights = weights.get(hiddenLayerIndex).get(i);
 
 			for (int j = 0; j < currNeuronWeights.size(); j++) { // iterate all the weights leading to neuron i
+				// System.out.println("\t\tWeight: " + j);
 				newDeltaWeights.add(-1.0 * learningRate * errorSignal * network.get(hiddenLayerIndex).get(j)); // calculate new delta weight
 				currNeuronWeights.set(j, currNeuronWeights.get(j) + newDeltaWeights.get(j) + momentum * deltaWeights.get(hiddenLayerIndex).get(i).get(j)); // add current weight and new delta weight plus momentum of previous delta weight
 				deltaWeights.get(hiddenLayerIndex).get(i).set(j, newDeltaWeights.get(j)); // set the old delta weight to new delta weight
+				// System.out.println("\t\t\t" + currNeuronWeights.get(j));
 			}
 		}
 
@@ -212,5 +227,25 @@ public class NeuralNetwork {
 				deltaWeights.get(inputLayerIndex).get(i).set(j, newDeltaWeights.get(j)); // set the old delta weight to new delta weight
 			}
 		}
+	}
+
+	public void log(int session, int testCorrect, int generalCorrect) {
+		PrintWriter out = null;
+
+		try {
+			out = new PrintWriter(new FileOutputStream("NNStats.txt", true));
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("'NNStats.txt' could not be found.");
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		out.println("Session: " + session);
+		out.println("\tEpoch: " + epochCounter);
+		out.println("\tTest Correct: " + testCorrect + "%");
+		out.println("\tGeneral Correct: " + generalCorrect + "%");
+		
+		out.close();
 	}
 }
