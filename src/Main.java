@@ -50,20 +50,21 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		int[] topology = {distortedImages.get(0).size() - 1, (distortedImages.get(0).size() - 1) * 3, 26};
+		int[] topology = {distortedImages.get(0).size() - 1, distortedImages.get(0).size() - 1, 26};
 		NeuralNetwork nn = new NeuralNetwork(topology);
 //		char[] targets = {'A', 'E', 'O', 'U', 'I'}; // , 'E', 'O', 'U', 'I'
 //		nn.setTargets(targets);
 
 		normalize(distortedImages, min, max);
-		boolean stop = false;
+		boolean stop = false; // debugging stop case
+		boolean noStop = true; // carry on until a good solution is found
 		double avgMSE = 0.0;
 
 		try {
 			Files.delete(FileSystems.getDefault().getPath("NNStats.txt"));
 		} catch (Exception ignored) {}
 
-		for (int i = 0; i < MAX_EPOCH && !stop; i++) {
+		for (long i = 0; (i < MAX_EPOCH && !stop) || noStop; i++) {
 			System.out.println("Epoch " + (i + 1));
 			shuffle(distortedImages);
 			nn.init();
@@ -99,7 +100,7 @@ public class Main {
 			double variance = nn.getMeanSquareError() / (distortedImages.size() * 0.2);
 			double stdDeviation = Math.sqrt(variance);
 
-			System.out.println(avgMSE + "  " + stdDeviation + "  " + nn.getMeanSquareError());
+			System.out.println("\tMSE: " + nn.getMeanSquareError() + "   Percentage correct: " + (Math.round ((nn.getNumCorrect() / (distortedImages.size() * 0.2)) * 100000.0) / 1000.0) + "%");
 
 			if (avgMSE + stdDeviation < nn.getMeanSquareError())
 				break;

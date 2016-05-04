@@ -248,7 +248,7 @@ public class NeuralNetwork {
 		}
 	}
 
-	public void log(int epoch, double trainCorrect, double generalCorrect) {
+	public void log(long epoch, double trainCorrect, double generalCorrect) {
 		PrintWriter out = null;
 
 		try {
