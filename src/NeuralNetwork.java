@@ -15,73 +15,56 @@ public class NeuralNetwork {
 	private boolean hardMatch = true; // must match one of the given targets
 	private int numCorrect = 0;
 	private double trainingAccuracy = 0.99;
-	private double  learningRate = 0.1;
-	private double momentum = 0.5;
-	private int epochCounter;
-	private int maxEpoch = 20000;
+	private double  learningRate = 0.2;
+	private double momentum = 0.9;
+	private double meanSquareError = 0.0;
+	private ArrayList<Double> mse = new ArrayList<>(3);
 
 	public NeuralNetwork (int[] topology) {
-		network = new ArrayList<>(topology.length);
 		Random generator = new Random();
-		weights = new ArrayList<>(topology.length);
-		deltaWeights = new ArrayList<>(topology.length);
+		network = new ArrayList<>();
+		weights = new ArrayList<>();
+		deltaWeights = new ArrayList<>();
+
+		for (int i = 0; i < 3; i++) {
+			mse.add(0.0);
+		}
 
 		for (int i = 0; i < topology.length; i++) { // iterate through all the layers
 			ArrayList<Double> layer;
-			ArrayList<ArrayList<Double>> layerNeurons;
-			ArrayList<ArrayList<Double>> deltaLayerNeurons;
+			ArrayList<ArrayList<Double>> layerWeights; // list of each neuron's weights in the current layer.
+			ArrayList<ArrayList<Double>> deltaLayerWeights; // list of each neuron's previous weights in the current layer.
 
-			if (i != topology.length - 1) { // if not the output layer
-				layer = new ArrayList<>(topology[i] + 1); // allocate extra space for extra neuron
-				layerNeurons = new ArrayList<>(topology[i] + 1); // list of each neuron's weights in the current layer.
-				deltaLayerNeurons = new ArrayList<>(topology[i] + 1); // list of each neuron's previous weights in the current layer.
-			}
-			else {
-				layer = new ArrayList<>(topology[i]);
-				layerNeurons = new ArrayList<>(topology[i]); // list of each neuron's weights in the current layer.
-				deltaLayerNeurons = new ArrayList<>(topology[i]); // list of each neuron's previous weights in the current layer.
-			}
+			layer = new ArrayList<>(); // allocate extra space for extra neuron
+			layerWeights = new ArrayList<>();
+			deltaLayerWeights = new ArrayList<>();
 
-			for (int j = 0; j < topology[i]; j++) {
+			for (int j = 0; j < topology[i]; j++) { // iterate all neurons in curr layer
 				layer.add(0.0);
+			}
 
-				if (i != 0) { // if not the input layer
-					ArrayList<Double> neuronWeights = new ArrayList<>(network.get(i - 1).size()); // the current neuron's weight excluding input layer
-					ArrayList<Double> deltaNeuronWeights = new ArrayList<>(network.get(i - 1).size()); // the current neuron's previous weight excluding input layer
+			if (i != topology.length - 1) { // add extra neuron to all levels except output
+				layer.add(-1.0); // add extra neuron to layer
 
-					for (int k = 0; k < network.get(i - 1).size(); k++) {
-						neuronWeights.add(generator.nextDouble() * (2 * (topology[i - 1] + 1)) - (topology[i - 1] + 1));
+				for (int j = 0; j < topology[i] + 1; j++) { // iterate all neurons in current layer
+					ArrayList<Double> neuronWeights = new ArrayList<>(); // the current neuron's weights
+					ArrayList<Double> deltaNeuronWeights = new ArrayList<>(); // the current neuron's previous weights
+
+					for (int k = 0; k < topology[i + 1]; k++) { // iterate all weights
+						double bounds = 1 / (Math.sqrt(topology[i] + 1));
+						neuronWeights.add(generator.nextDouble() * (2 * bounds) - bounds);
 						deltaNeuronWeights.add(0.0);
 					}
 
-					layerNeurons.add(neuronWeights); // allocate new list for each neuron in previous layer to current layer
-					deltaLayerNeurons.add(deltaNeuronWeights); // allocate new list for each neuron in previous layer to current layer
-
-					if (j == topology[i] - 1) {
-						neuronWeights = new ArrayList<>(network.get(i - 1).size()); // the current neuron's weight excluding input layer
-						deltaNeuronWeights = new ArrayList<>(network.get(i - 1).size()); // the current neuron's previous weight excluding input layer
-
-						for (int k = 0; k < network.get(i - 1).size(); k++) {
-							neuronWeights.add(generator.nextDouble() * (2 * (topology[i - 1] + 1)) - (topology[i - 1] + 1));
-							deltaNeuronWeights.add(0.0);
-						}
-
-						layerNeurons.add(neuronWeights); // allocate new list for each neuron in previous layer to current layer
-						deltaLayerNeurons.add(deltaNeuronWeights); // allocate new list for each neuron in previous layer to current layer
-					}
+					layerWeights.add(neuronWeights); // allocate new list for each neuron in previous layer to current layer
+					deltaLayerWeights.add(deltaNeuronWeights); // allocate new list for each neuron in previous layer to current layer
 				}
+
+				weights.add(layerWeights);
+				deltaWeights.add(deltaLayerWeights);
 			}
 
-			if (i != topology.length - 1) { // if not the output layer
-				layer.add(-1.0); // add extra neuron to layer
-			}
-
-			if (i != 0) { // if not the input layer
-				weights.add(layerNeurons); // add the current layer's neuron weights
-				deltaWeights.add(deltaLayerNeurons); // add the current layer's previous neuron weights
-			}
-
-			network.add(layer);
+			network.add(layer); // add layer to network
 		}
 	}
 
@@ -101,8 +84,8 @@ public class NeuralNetwork {
 	}
 
 	public void init() {
-		epochCounter = 0;
 		numCorrect = 0;
+		meanSquareError = 0.0;
 	}
 
 	public void feedForward (ArrayList<Double> distortedImage) {
@@ -115,26 +98,29 @@ public class NeuralNetwork {
 		for (int i = 1; i < network.size(); i++) { // iterate through all the layers except the input layer
 			for (int j = 0; j < network.get(i).size() - 1; j++) { // iterate through all the neurons in current layer except the -1 neuron at the bottom
 				network.get(i).set(j, activation(i, j)); // set the value of neuron j at level i
-
-				if (i == network.size() - 1){
-					network.get(i).set(j + 1, activation(i, j + 1)); // set the value of neuron j at level i
-				}
-
 			}
 		}
+
+		int outputLayerIndex = network.size() - 1;
+		int lastOutputNeuronIndex = network.get(outputLayerIndex).size() - 1;
+		network.get(outputLayerIndex).set(lastOutputNeuronIndex, activation(outputLayerIndex, lastOutputNeuronIndex)); // set the value of neuron j at level i
 
 		int matchingIndex = getMatchingIndex(letter);
 		boolean matches = true;
 
-		for (int i = 0; i < network.get(network.size() - 1).size(); i++) { // iterate all output neurons
+		for (int i = 0; i < network.get(outputLayerIndex).size(); i++) { // iterate all output neurons
 			if (i == matchingIndex) {
-				if (network.get(network.size() - 1).get(i) != 1.0) {
+				meanSquareError += Math.pow(1.0 - network.get(outputLayerIndex).get(i), 2);
+
+				if (network.get(outputLayerIndex).get(i) < 0.7) {
 					matches = false;
 					break;
 				}
 			}
 			else {
-				if (network.get(network.size() - 1).get(i) != 0.0) {
+				meanSquareError += Math.pow(0.0 - network.get(outputLayerIndex).get(i), 2);
+
+				if (network.get(outputLayerIndex).get(i) > 0.3) {
 					matches = false;
 					break;
 				}
@@ -142,18 +128,31 @@ public class NeuralNetwork {
 		}
 
 		if (matches) {
-			System.out.println("MATCHED LETTER '" + letter + "' at index " + matchingIndex);
+//			System.out.println("MATCHED LETTER '" + letter + "' at index " + matchingIndex);
 			numCorrect++; // letter was correctly and uniformly identified
 		}
 
-		epochCounter++;
+//		if (matches && (letter == 'A' || letter == 'E' || letter == 'O' || letter == 'U' || letter == 'I'))
+//			System.out.println("MATCHED LETTER '" + letter + "' at index " + matchingIndex);
+//		else if (matches)
+//			System.out.println("NOT MATCHED LETTER '" + letter + "' at index " + matchingIndex);
+	}
+
+	private double activation (int layer, int neuron) {
+		double netVal = 0.0;
+
+		for (int i = 0; i < network.get(layer - 1).size(); i++) { // iterate all the neurons i of neuron at layer = (layer - 1)
+			netVal += network.get(layer - 1).get(i) * weights.get(layer - 1).get(i).get(neuron);
+		}
+
+		return 1 / (1 + Math.pow(Math.E, -1.0 * netVal));
 	}
 
 	private int getMatchingIndex(char letter) {
 		int matchingIndex;
 
 		if (!hardMatch) {
-			matchingIndex = network.get(network.size() - 1).size() - 1; // the output neuron that must be 1, all other must be 0
+			matchingIndex = network.get(network.size() - 1).size() - 1; // default: last output neuron
 
 			for (int i = 0; i < targets.length; i++) { // check if the letter of this data set is in our target list
 				if (letter == targets[i]) { // if it is, the set that index as the one that must be 1
@@ -169,67 +168,87 @@ public class NeuralNetwork {
 		return matchingIndex;
 	}
 
-	private double activation (int layer, int neuron) {
-		double netVal = 0.0;
+	public void adjustments() {
+//		mse.remove(2);
+//		mse.add(0, meanSquareError);
+//
+//		if (mse.get(0) < mse.get(1) && mse.get(1) < mse.get(2)) // if mean square error has decreased over the past 3 epoch
+//			learningRate = Math.max(learningRate - 0.001, 0.01); // decrease learning rate up until 0.01
+//		else if (mse.get(0) > mse.get(1) && mse.get(1) > mse.get(2)) // if mean square error has increased over the past 3 epoch
+//			learningRate = Math.min(learningRate + 0.001, 1.0); // increase learning rate up until 1.0
+//
+//		momentum = Math.max(momentum - 0.01, 0.0); // decrease momentum up until 0
+	}
 
-		for (int i = 0; i < network.get(layer - 1).size(); i++) { // iterate all the weights i of neuron at layer
-			netVal += network.get(layer - 1).get(i) * weights.get(layer - 1).get(neuron).get(i);
-		}
+	public double getMeanSquareError() {
+		return meanSquareError;
+	}
 
-		return 1 / (1 + Math.pow(Math.E, netVal));
+	public double getTrainingAccuracy() {
+		return trainingAccuracy;
 	}
 
 	public void backPropagation (ArrayList<Double> distortedImage) {
 		char letter = (char)Math.floor(distortedImage.get(0));
 		int matchingIndex = getMatchingIndex(letter);
-		int inputLayerIndex = 0;
-		int hiddenLayerIndex = 1;
 		int outputLayerIndex = 2;
-		ArrayList<Double> outputErrorSignals = new ArrayList<>();
-		// System.out.println("OutputLayer:");
+		ArrayList<Double> errorSignals = new ArrayList<>();
 
 		for (int i = 0; i < network.get(outputLayerIndex).size(); i++) { // iterate all output neurons
-			// System.out.println("\tNEURON: " + i);
 			double target = 0.0; // default target for a neuron is 0.0
 			double neuronValue = network.get(outputLayerIndex).get(i); // value of current neuron
 
 			if (i == matchingIndex)
 				target = 1.0; // if this neuron is the one that has to be true then set the target to 1.0
 
-			double errorSignal = -1.0 * (target - neuronValue) * (1 - neuronValue) * neuronValue; // calculate the error signal of the current output neuron
-			outputErrorSignals.add(errorSignal);
-			ArrayList<Double> newDeltaWeights = new ArrayList<>();
-			ArrayList<Double> currNeuronWeights = weights.get(hiddenLayerIndex).get(i);
+			double errorSignal = -1.0 * (target - neuronValue) * (1 - neuronValue) * neuronValue; // calculate the error signal of the current output
+			errorSignals.add(errorSignal);
 
-			for (int j = 0; j < currNeuronWeights.size(); j++) { // iterate all the weights leading to neuron i
-				// System.out.println("\t\tWeight: " + j);
-				newDeltaWeights.add(-1.0 * learningRate * errorSignal * network.get(hiddenLayerIndex).get(j)); // calculate new delta weight
-				currNeuronWeights.set(j, currNeuronWeights.get(j) + newDeltaWeights.get(j) + momentum * deltaWeights.get(hiddenLayerIndex).get(i).get(j)); // add current weight and new delta weight plus momentum of previous delta weight
-				deltaWeights.get(hiddenLayerIndex).get(i).set(j, newDeltaWeights.get(j)); // set the old delta weight to new delta weight
-				// System.out.println("\t\t\t" + currNeuronWeights.get(j));
+			for (int j = 0; j < network.get(outputLayerIndex - 1).size(); j++) { // iterate second last layer
+				double oldWeightJI = weights.get(outputLayerIndex - 1).get(j).get(i);
+				double valueOfJ = network.get(outputLayerIndex - 1).get(j);
+				double oldDeltaJI = deltaWeights.get(outputLayerIndex - 1).get(j).get(i);
+				double newDeltaJI = -1.0 * learningRate * errorSignal * valueOfJ;
+				double newWeightJI = oldWeightJI + newDeltaJI + momentum * oldDeltaJI;
+
+				deltaWeights.get(outputLayerIndex - 1).get(j).set(i, newDeltaJI);
+				weights.get(outputLayerIndex - 1).get(j).set(i, newWeightJI);
 			}
 		}
 
-		for (int i = 0; i < network.get(hiddenLayerIndex).size(); i++) { // iterate all neurons in hidden layer
-			double neuronValue = network.get(hiddenLayerIndex).get(i); // value of current neuron
 
-			double errorSignal = 0.0; // calculate the error signal of the current hidden neuron
-			ArrayList<Double> newDeltaWeights = new ArrayList<>(weights.get(inputLayerIndex).get(i).size());
-			ArrayList<Double> currNeuronWeights = weights.get(inputLayerIndex).get(i);
 
-			for (int j = 0; j < network.get(outputLayerIndex).size(); j++) { // iterate all output neurons
-				errorSignal += outputErrorSignals.get(j) * currNeuronWeights.get(j) * (1 - neuronValue) * neuronValue; // calculate the current error neuron's signal
+		for (int i = network.size() - 2; i > 0; i--) { // iterate all hidden layers
+			ArrayList<Double> tmpErrorSignals = null;
+
+			for (int j = 0; j < network.get(i).size() - 1; j++) { // iterate all neurons at level at i
+				tmpErrorSignals = new ArrayList<>();
+				double errorSignal = 0.0;
+
+				for (int k = 0; k < network.get(i + 1).size(); k++) { // iterate neurons in next level to calculate error signal
+					errorSignal += errorSignals.get(k) * weights.get(i).get(j).get(k) * (1 - network.get(i).get(j)) * network.get(i).get(j);
+				}
+
+				tmpErrorSignals.add(errorSignal);
+
+				for (int k = 0; k < network.get(i - 1).size(); k++) { // iterate previous layer
+					//System.out.println(weights.get(i - 1).get(k).size());
+					double oldWeightKJ = weights.get(i - 1).get(k).get(j);
+					double valueOfK = network.get(i - 1).get(k);
+					double oldDeltaKJ = deltaWeights.get(i - 1).get(k).get(j);
+					double newDeltaKJ = -1.0 * learningRate * errorSignal * valueOfK;
+					double newWeightKJ = oldWeightKJ + newDeltaKJ + momentum * oldDeltaKJ;
+
+					deltaWeights.get(i - 1).get(k).set(j, newDeltaKJ);
+					weights.get(i - 1).get(k).set(j, newWeightKJ);
+				}
 			}
 
-			for (int j = 0; j < currNeuronWeights.size(); j++) { // iterate all the weights leading to neuron i
-				newDeltaWeights.add(-1.0 * learningRate * errorSignal * network.get(inputLayerIndex).get(j)); // calculate new delta weight
-				currNeuronWeights.set(j, currNeuronWeights.get(j) + newDeltaWeights.get(j) + momentum * deltaWeights.get(inputLayerIndex).get(i).get(j)); // add current weight and new delta weight plus momentum of previous delta weight
-				deltaWeights.get(inputLayerIndex).get(i).set(j, newDeltaWeights.get(j)); // set the old delta weight to new delta weight
-			}
+			errorSignals = tmpErrorSignals;
 		}
 	}
 
-	public void log(int session, int testCorrect, int generalCorrect) {
+	public void log(int epoch, double trainCorrect, double generalCorrect) {
 		PrintWriter out = null;
 
 		try {
@@ -241,10 +260,10 @@ public class NeuralNetwork {
 			System.exit(1);
 		}
 
-		out.println("Session: " + session);
-		out.println("\tEpoch: " + epochCounter);
-		out.println("\tTest Correct: " + testCorrect + "%");
-		out.println("\tGeneral Correct: " + generalCorrect + "%");
+		out.println("Epoch: " + epoch);
+		out.println("\tMSE: " + meanSquareError);
+		out.println("\tTraining Correct: " + (Math.round (trainCorrect * 100000.0) / 1000.0) + "%");
+		out.println("\tGeneral Correct: " + (Math.round (generalCorrect * 100000.0) / 1000.0) + "%");
 		
 		out.close();
 	}

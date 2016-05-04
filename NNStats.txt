@@ -1,0 +1,1124 @@
+Epoch: 1
+	MSE: 2024.7101354030037
+	Training Correct: 4.808%
+	General Correct: 16.35%
+Epoch: 2
+	MSE: 1441.5866210204135
+	Training Correct: 26.817%
+	General Correct: 35.65%
+Epoch: 3
+	MSE: 1292.0936763171208
+	Training Correct: 40.767%
+	General Correct: 44.75%
+Epoch: 4
+	MSE: 1149.8629445407028
+	Training Correct: 48.067%
+	General Correct: 49.7%
+Epoch: 5
+	MSE: 1085.7722321292463
+	Training Correct: 52.108%
+	General Correct: 54.85%
+Epoch: 6
+	MSE: 1038.8059261584376
+	Training Correct: 55.625%
+	General Correct: 57.775%
+Epoch: 7
+	MSE: 1041.8799358084634
+	Training Correct: 57.583%
+	General Correct: 57.05%
+Epoch: 8
+	MSE: 965.4897162561168
+	Training Correct: 59.467%
+	General Correct: 61.475%
+Epoch: 9
+	MSE: 955.1401057083984
+	Training Correct: 60.842%
+	General Correct: 62.075%
+Epoch: 10
+	MSE: 1030.859532710425
+	Training Correct: 62.342%
+	General Correct: 60.925%
+Epoch: 11
+	MSE: 933.422917937912
+	Training Correct: 63.342%
+	General Correct: 63.0%
+Epoch: 12
+	MSE: 876.3248516843046
+	Training Correct: 63.675%
+	General Correct: 65.175%
+Epoch: 13
+	MSE: 884.1614607298139
+	Training Correct: 64.75%
+	General Correct: 63.375%
+Epoch: 14
+	MSE: 912.2666911716626
+	Training Correct: 65.817%
+	General Correct: 65.125%
+Epoch: 15
+	MSE: 888.8111862257897
+	Training Correct: 66.117%
+	General Correct: 65.825%
+Epoch: 16
+	MSE: 901.8769864544016
+	Training Correct: 66.517%
+	General Correct: 65.825%
+Epoch: 17
+	MSE: 817.0566312441996
+	Training Correct: 66.533%
+	General Correct: 68.275%
+Epoch: 18
+	MSE: 823.2230958159097
+	Training Correct: 67.525%
+	General Correct: 68.05%
+Epoch: 19
+	MSE: 802.345894422621
+	Training Correct: 67.883%
+	General Correct: 68.1%
+Epoch: 20
+	MSE: 809.4023040579918
+	Training Correct: 67.533%
+	General Correct: 69.55%
+Epoch: 21
+	MSE: 845.0730080174447
+	Training Correct: 68.3%
+	General Correct: 67.25%
+Epoch: 22
+	MSE: 802.3456330659104
+	Training Correct: 68.492%
+	General Correct: 69.45%
+Epoch: 23
+	MSE: 814.227015788047
+	Training Correct: 69.183%
+	General Correct: 68.175%
+Epoch: 24
+	MSE: 843.9395814205076
+	Training Correct: 69.442%
+	General Correct: 66.625%
+Epoch: 25
+	MSE: 777.201121135538
+	Training Correct: 70.192%
+	General Correct: 69.35%
+Epoch: 26
+	MSE: 755.2183550520239
+	Training Correct: 70.167%
+	General Correct: 69.95%
+Epoch: 27
+	MSE: 758.0132981384428
+	Training Correct: 70.167%
+	General Correct: 69.725%
+Epoch: 28
+	MSE: 789.4628507953859
+	Training Correct: 70.508%
+	General Correct: 69.175%
+Epoch: 29
+	MSE: 744.3381684030795
+	Training Correct: 70.408%
+	General Correct: 71.675%
+Epoch: 30
+	MSE: 780.7792334642193
+	Training Correct: 70.842%
+	General Correct: 70.0%
+Epoch: 31
+	MSE: 738.6798196957952
+	Training Correct: 70.833%
+	General Correct: 71.775%
+Epoch: 32
+	MSE: 720.0670149091217
+	Training Correct: 70.825%
+	General Correct: 71.625%
+Epoch: 33
+	MSE: 818.4216458211968
+	Training Correct: 71.417%
+	General Correct: 69.025%
+Epoch: 34
+	MSE: 730.7550714680353
+	Training Correct: 71.583%
+	General Correct: 72.575%
+Epoch: 35
+	MSE: 739.2378466401632
+	Training Correct: 72.325%
+	General Correct: 72.075%
+Epoch: 36
+	MSE: 768.265542932636
+	Training Correct: 71.942%
+	General Correct: 71.875%
+Epoch: 37
+	MSE: 811.3768863829641
+	Training Correct: 72.308%
+	General Correct: 69.75%
+Epoch: 38
+	MSE: 731.3994957724904
+	Training Correct: 72.717%
+	General Correct: 73.075%
+Epoch: 39
+	MSE: 699.8948592267371
+	Training Correct: 72.525%
+	General Correct: 73.125%
+Epoch: 40
+	MSE: 779.665477126749
+	Training Correct: 72.858%
+	General Correct: 71.825%
+Epoch: 41
+	MSE: 743.8566429054964
+	Training Correct: 72.742%
+	General Correct: 72.025%
+Epoch: 42
+	MSE: 698.132959994773
+	Training Correct: 73.225%
+	General Correct: 73.45%
+Epoch: 43
+	MSE: 761.4508991845831
+	Training Correct: 73.592%
+	General Correct: 70.0%
+Epoch: 44
+	MSE: 699.3536253615366
+	Training Correct: 73.142%
+	General Correct: 72.775%
+Epoch: 45
+	MSE: 719.6230032056425
+	Training Correct: 72.983%
+	General Correct: 73.15%
+Epoch: 46
+	MSE: 704.8616819612548
+	Training Correct: 73.25%
+	General Correct: 73.65%
+Epoch: 47
+	MSE: 760.5006110745651
+	Training Correct: 73.933%
+	General Correct: 72.3%
+Epoch: 48
+	MSE: 706.462005742948
+	Training Correct: 73.45%
+	General Correct: 72.875%
+Epoch: 49
+	MSE: 730.5264889176678
+	Training Correct: 73.833%
+	General Correct: 72.55%
+Epoch: 50
+	MSE: 718.7645144345678
+	Training Correct: 73.225%
+	General Correct: 72.95%
+Epoch: 51
+	MSE: 726.54750123122
+	Training Correct: 73.442%
+	General Correct: 72.5%
+Epoch: 52
+	MSE: 700.8376054743165
+	Training Correct: 73.675%
+	General Correct: 74.675%
+Epoch: 53
+	MSE: 731.0869112220932
+	Training Correct: 73.658%
+	General Correct: 72.025%
+Epoch: 54
+	MSE: 669.6379984872021
+	Training Correct: 73.8%
+	General Correct: 74.75%
+Epoch: 55
+	MSE: 698.8272993395177
+	Training Correct: 74.033%
+	General Correct: 74.7%
+Epoch: 56
+	MSE: 731.8485186548949
+	Training Correct: 74.133%
+	General Correct: 73.35%
+Epoch: 57
+	MSE: 702.4516664724763
+	Training Correct: 74.308%
+	General Correct: 74.075%
+Epoch: 58
+	MSE: 662.0549518538893
+	Training Correct: 74.117%
+	General Correct: 74.35%
+Epoch: 59
+	MSE: 715.8084587708561
+	Training Correct: 74.95%
+	General Correct: 73.05%
+Epoch: 60
+	MSE: 663.353130805787
+	Training Correct: 73.758%
+	General Correct: 76.075%
+Epoch: 61
+	MSE: 679.7795039557702
+	Training Correct: 74.708%
+	General Correct: 74.65%
+Epoch: 62
+	MSE: 681.7624966606905
+	Training Correct: 74.725%
+	General Correct: 74.5%
+Epoch: 63
+	MSE: 718.9789696720075
+	Training Correct: 74.775%
+	General Correct: 74.675%
+Epoch: 64
+	MSE: 672.095194817806
+	Training Correct: 74.158%
+	General Correct: 75.8%
+Epoch: 65
+	MSE: 695.139724662211
+	Training Correct: 74.9%
+	General Correct: 73.95%
+Epoch: 66
+	MSE: 749.486850913586
+	Training Correct: 75.375%
+	General Correct: 71.7%
+Epoch: 67
+	MSE: 718.7515797320943
+	Training Correct: 74.325%
+	General Correct: 73.85%
+Epoch: 68
+	MSE: 698.4224254005467
+	Training Correct: 74.908%
+	General Correct: 74.525%
+Epoch: 69
+	MSE: 743.2272246010568
+	Training Correct: 75.383%
+	General Correct: 74.1%
+Epoch: 70
+	MSE: 686.4354215043521
+	Training Correct: 74.808%
+	General Correct: 75.1%
+Epoch: 71
+	MSE: 669.635638983761
+	Training Correct: 74.975%
+	General Correct: 75.925%
+Epoch: 72
+	MSE: 680.5885274393333
+	Training Correct: 75.333%
+	General Correct: 74.875%
+Epoch: 73
+	MSE: 708.4392626177638
+	Training Correct: 75.525%
+	General Correct: 74.55%
+Epoch: 74
+	MSE: 713.1732508924488
+	Training Correct: 75.225%
+	General Correct: 73.9%
+Epoch: 75
+	MSE: 675.3694512540043
+	Training Correct: 74.85%
+	General Correct: 74.95%
+Epoch: 76
+	MSE: 696.2411213770727
+	Training Correct: 74.842%
+	General Correct: 74.75%
+Epoch: 77
+	MSE: 669.9215378587937
+	Training Correct: 75.042%
+	General Correct: 75.875%
+Epoch: 78
+	MSE: 674.7040700120801
+	Training Correct: 75.325%
+	General Correct: 75.325%
+Epoch: 79
+	MSE: 696.9297132579125
+	Training Correct: 74.617%
+	General Correct: 74.7%
+Epoch: 80
+	MSE: 701.6381019938494
+	Training Correct: 75.408%
+	General Correct: 74.55%
+Epoch: 81
+	MSE: 687.3028583718659
+	Training Correct: 75.3%
+	General Correct: 74.5%
+Epoch: 82
+	MSE: 656.2532093633416
+	Training Correct: 74.925%
+	General Correct: 76.375%
+Epoch: 83
+	MSE: 687.5831709848421
+	Training Correct: 75.708%
+	General Correct: 75.25%
+Epoch: 84
+	MSE: 701.9461990829681
+	Training Correct: 75.992%
+	General Correct: 75.625%
+Epoch: 85
+	MSE: 676.516699906141
+	Training Correct: 75.575%
+	General Correct: 75.15%
+Epoch: 86
+	MSE: 688.3022950068456
+	Training Correct: 75.792%
+	General Correct: 75.525%
+Epoch: 87
+	MSE: 743.0558199093729
+	Training Correct: 76.292%
+	General Correct: 74.25%
+Epoch: 88
+	MSE: 696.8611782748376
+	Training Correct: 75.883%
+	General Correct: 75.325%
+Epoch: 89
+	MSE: 685.504151136802
+	Training Correct: 76.017%
+	General Correct: 76.0%
+Epoch: 90
+	MSE: 653.6101832852828
+	Training Correct: 75.333%
+	General Correct: 76.725%
+Epoch: 91
+	MSE: 686.1900744446781
+	Training Correct: 75.758%
+	General Correct: 75.225%
+Epoch: 92
+	MSE: 679.761496114406
+	Training Correct: 75.733%
+	General Correct: 75.675%
+Epoch: 93
+	MSE: 723.7028643732491
+	Training Correct: 76.442%
+	General Correct: 74.85%
+Epoch: 94
+	MSE: 695.1139227693072
+	Training Correct: 76.075%
+	General Correct: 75.425%
+Epoch: 95
+	MSE: 653.7286375102601
+	Training Correct: 75.275%
+	General Correct: 76.35%
+Epoch: 96
+	MSE: 667.0167403589977
+	Training Correct: 75.725%
+	General Correct: 76.475%
+Epoch: 97
+	MSE: 669.2717831659832
+	Training Correct: 76.142%
+	General Correct: 76.7%
+Epoch: 98
+	MSE: 646.7182020270814
+	Training Correct: 76.15%
+	General Correct: 76.925%
+Epoch: 99
+	MSE: 648.1696534514268
+	Training Correct: 76.2%
+	General Correct: 76.55%
+Epoch: 100
+	MSE: 660.2607852082581
+	Training Correct: 75.883%
+	General Correct: 76.4%
+Epoch: 101
+	MSE: 711.9320102012225
+	Training Correct: 76.117%
+	General Correct: 74.75%
+Epoch: 102
+	MSE: 631.5733161921339
+	Training Correct: 76.075%
+	General Correct: 76.9%
+Epoch: 103
+	MSE: 626.5364311511269
+	Training Correct: 75.925%
+	General Correct: 77.275%
+Epoch: 104
+	MSE: 662.7010956118207
+	Training Correct: 76.267%
+	General Correct: 76.35%
+Epoch: 105
+	MSE: 674.7877914342133
+	Training Correct: 76.492%
+	General Correct: 75.025%
+Epoch: 106
+	MSE: 706.0062569798657
+	Training Correct: 76.533%
+	General Correct: 75.075%
+Epoch: 107
+	MSE: 688.363252495547
+	Training Correct: 75.85%
+	General Correct: 75.725%
+Epoch: 108
+	MSE: 677.6158277386422
+	Training Correct: 76.542%
+	General Correct: 76.975%
+Epoch: 109
+	MSE: 670.0468742155041
+	Training Correct: 76.417%
+	General Correct: 76.25%
+Epoch: 110
+	MSE: 688.7999243017614
+	Training Correct: 75.992%
+	General Correct: 75.275%
+Epoch: 111
+	MSE: 691.6071636948932
+	Training Correct: 76.208%
+	General Correct: 75.2%
+Epoch: 112
+	MSE: 656.6491116262154
+	Training Correct: 76.367%
+	General Correct: 76.825%
+Epoch: 113
+	MSE: 668.2011102063648
+	Training Correct: 76.583%
+	General Correct: 76.25%
+Epoch: 114
+	MSE: 667.4565890411548
+	Training Correct: 76.425%
+	General Correct: 76.175%
+Epoch: 115
+	MSE: 688.8645329479007
+	Training Correct: 76.75%
+	General Correct: 75.325%
+Epoch: 116
+	MSE: 646.6036586172166
+	Training Correct: 76.025%
+	General Correct: 77.675%
+Epoch: 117
+	MSE: 676.4678613537919
+	Training Correct: 76.883%
+	General Correct: 75.95%
+Epoch: 118
+	MSE: 700.4920579180828
+	Training Correct: 76.708%
+	General Correct: 75.95%
+Epoch: 119
+	MSE: 673.6099362058758
+	Training Correct: 76.492%
+	General Correct: 76.4%
+Epoch: 120
+	MSE: 702.0412513195656
+	Training Correct: 76.383%
+	General Correct: 75.85%
+Epoch: 121
+	MSE: 665.1353016997988
+	Training Correct: 76.7%
+	General Correct: 76.9%
+Epoch: 122
+	MSE: 659.2646213917564
+	Training Correct: 76.883%
+	General Correct: 76.4%
+Epoch: 123
+	MSE: 671.8691816592409
+	Training Correct: 76.242%
+	General Correct: 76.775%
+Epoch: 124
+	MSE: 648.0785310027226
+	Training Correct: 76.642%
+	General Correct: 77.625%
+Epoch: 125
+	MSE: 666.011206404898
+	Training Correct: 76.967%
+	General Correct: 76.425%
+Epoch: 126
+	MSE: 649.6963267155434
+	Training Correct: 76.583%
+	General Correct: 77.025%
+Epoch: 127
+	MSE: 679.4858774878522
+	Training Correct: 77.258%
+	General Correct: 75.675%
+Epoch: 128
+	MSE: 614.7981752223178
+	Training Correct: 76.7%
+	General Correct: 78.175%
+Epoch: 129
+	MSE: 698.3605553906121
+	Training Correct: 76.708%
+	General Correct: 75.6%
+Epoch: 130
+	MSE: 637.3709810796469
+	Training Correct: 76.167%
+	General Correct: 77.8%
+Epoch: 131
+	MSE: 662.1669049825899
+	Training Correct: 76.6%
+	General Correct: 76.675%
+Epoch: 132
+	MSE: 666.5107100327764
+	Training Correct: 76.508%
+	General Correct: 76.7%
+Epoch: 133
+	MSE: 652.4751200584875
+	Training Correct: 76.667%
+	General Correct: 76.85%
+Epoch: 134
+	MSE: 695.8731584820657
+	Training Correct: 77.0%
+	General Correct: 75.9%
+Epoch: 135
+	MSE: 678.0886355060098
+	Training Correct: 76.733%
+	General Correct: 76.425%
+Epoch: 136
+	MSE: 674.3367819580085
+	Training Correct: 77.083%
+	General Correct: 76.45%
+Epoch: 137
+	MSE: 701.183715268881
+	Training Correct: 77.083%
+	General Correct: 75.425%
+Epoch: 138
+	MSE: 680.5469742190274
+	Training Correct: 77.058%
+	General Correct: 76.05%
+Epoch: 139
+	MSE: 650.8839164893908
+	Training Correct: 77.117%
+	General Correct: 77.75%
+Epoch: 140
+	MSE: 643.3850393016182
+	Training Correct: 76.15%
+	General Correct: 77.725%
+Epoch: 141
+	MSE: 660.0976088131819
+	Training Correct: 77.083%
+	General Correct: 76.95%
+Epoch: 142
+	MSE: 647.0094098147115
+	Training Correct: 76.617%
+	General Correct: 76.475%
+Epoch: 143
+	MSE: 708.55736305208
+	Training Correct: 77.133%
+	General Correct: 75.25%
+Epoch: 144
+	MSE: 669.6816361369893
+	Training Correct: 76.625%
+	General Correct: 76.925%
+Epoch: 145
+	MSE: 664.4283460871941
+	Training Correct: 77.292%
+	General Correct: 77.425%
+Epoch: 146
+	MSE: 645.7595363175101
+	Training Correct: 76.917%
+	General Correct: 77.25%
+Epoch: 147
+	MSE: 648.6960841028572
+	Training Correct: 76.808%
+	General Correct: 77.425%
+Epoch: 148
+	MSE: 646.8108552774007
+	Training Correct: 77.408%
+	General Correct: 77.375%
+Epoch: 149
+	MSE: 661.344075697121
+	Training Correct: 77.525%
+	General Correct: 76.7%
+Epoch: 150
+	MSE: 664.4867545987252
+	Training Correct: 76.8%
+	General Correct: 77.325%
+Epoch: 151
+	MSE: 662.8733515669785
+	Training Correct: 77.292%
+	General Correct: 77.25%
+Epoch: 152
+	MSE: 634.8468349641245
+	Training Correct: 77.058%
+	General Correct: 77.2%
+Epoch: 153
+	MSE: 672.3683498929316
+	Training Correct: 77.542%
+	General Correct: 77.0%
+Epoch: 154
+	MSE: 659.5550656869724
+	Training Correct: 76.892%
+	General Correct: 77.45%
+Epoch: 155
+	MSE: 611.8976912766135
+	Training Correct: 76.875%
+	General Correct: 78.8%
+Epoch: 156
+	MSE: 641.1281530134706
+	Training Correct: 77.458%
+	General Correct: 77.425%
+Epoch: 157
+	MSE: 660.6226128299841
+	Training Correct: 77.025%
+	General Correct: 76.45%
+Epoch: 158
+	MSE: 660.4709796513513
+	Training Correct: 76.833%
+	General Correct: 77.1%
+Epoch: 159
+	MSE: 679.1001653575333
+	Training Correct: 78.067%
+	General Correct: 76.2%
+Epoch: 160
+	MSE: 679.9821781513111
+	Training Correct: 77.375%
+	General Correct: 76.775%
+Epoch: 161
+	MSE: 638.5383104546559
+	Training Correct: 77.208%
+	General Correct: 77.4%
+Epoch: 162
+	MSE: 654.0902838125193
+	Training Correct: 78.175%
+	General Correct: 77.7%
+Epoch: 163
+	MSE: 655.7775962764367
+	Training Correct: 77.308%
+	General Correct: 76.7%
+Epoch: 164
+	MSE: 640.6289983745291
+	Training Correct: 77.483%
+	General Correct: 78.025%
+Epoch: 165
+	MSE: 657.2429323164786
+	Training Correct: 77.317%
+	General Correct: 77.05%
+Epoch: 166
+	MSE: 670.5650475210948
+	Training Correct: 77.417%
+	General Correct: 76.85%
+Epoch: 167
+	MSE: 657.345341841592
+	Training Correct: 77.083%
+	General Correct: 77.05%
+Epoch: 168
+	MSE: 634.3809017397862
+	Training Correct: 77.242%
+	General Correct: 77.675%
+Epoch: 169
+	MSE: 669.3346777106362
+	Training Correct: 77.267%
+	General Correct: 76.975%
+Epoch: 170
+	MSE: 696.7948708240193
+	Training Correct: 77.292%
+	General Correct: 75.95%
+Epoch: 171
+	MSE: 669.464241004518
+	Training Correct: 77.567%
+	General Correct: 77.375%
+Epoch: 172
+	MSE: 655.7286450995459
+	Training Correct: 77.308%
+	General Correct: 76.875%
+Epoch: 173
+	MSE: 619.6538071302942
+	Training Correct: 77.442%
+	General Correct: 78.825%
+Epoch: 174
+	MSE: 629.4064653837441
+	Training Correct: 77.533%
+	General Correct: 78.575%
+Epoch: 175
+	MSE: 619.666226697377
+	Training Correct: 77.133%
+	General Correct: 79.25%
+Epoch: 176
+	MSE: 702.5866533499296
+	Training Correct: 77.908%
+	General Correct: 74.8%
+Epoch: 177
+	MSE: 651.4133717397817
+	Training Correct: 77.317%
+	General Correct: 76.925%
+Epoch: 178
+	MSE: 617.6222195548311
+	Training Correct: 77.017%
+	General Correct: 77.65%
+Epoch: 179
+	MSE: 641.0680832944747
+	Training Correct: 77.025%
+	General Correct: 76.775%
+Epoch: 180
+	MSE: 625.1856492265996
+	Training Correct: 77.575%
+	General Correct: 78.275%
+Epoch: 181
+	MSE: 600.9352931350099
+	Training Correct: 76.908%
+	General Correct: 78.925%
+Epoch: 182
+	MSE: 627.1802408580886
+	Training Correct: 76.925%
+	General Correct: 78.175%
+Epoch: 183
+	MSE: 643.9976747169933
+	Training Correct: 77.825%
+	General Correct: 76.95%
+Epoch: 184
+	MSE: 624.8516703110398
+	Training Correct: 77.617%
+	General Correct: 78.1%
+Epoch: 185
+	MSE: 696.9342492494204
+	Training Correct: 77.725%
+	General Correct: 75.275%
+Epoch: 186
+	MSE: 641.9832234711115
+	Training Correct: 77.2%
+	General Correct: 77.825%
+Epoch: 187
+	MSE: 622.4697396679935
+	Training Correct: 77.658%
+	General Correct: 77.4%
+Epoch: 188
+	MSE: 632.7525651023446
+	Training Correct: 76.967%
+	General Correct: 77.725%
+Epoch: 189
+	MSE: 658.1921141961379
+	Training Correct: 78.042%
+	General Correct: 77.45%
+Epoch: 190
+	MSE: 652.9643181200623
+	Training Correct: 77.642%
+	General Correct: 76.975%
+Epoch: 191
+	MSE: 663.013103117255
+	Training Correct: 77.925%
+	General Correct: 76.525%
+Epoch: 192
+	MSE: 677.5024637411444
+	Training Correct: 77.15%
+	General Correct: 76.675%
+Epoch: 193
+	MSE: 660.5464733210114
+	Training Correct: 78.2%
+	General Correct: 77.575%
+Epoch: 194
+	MSE: 608.1913552730921
+	Training Correct: 77.608%
+	General Correct: 79.375%
+Epoch: 195
+	MSE: 624.4450679012915
+	Training Correct: 77.883%
+	General Correct: 78.125%
+Epoch: 196
+	MSE: 694.0400025388872
+	Training Correct: 77.55%
+	General Correct: 76.0%
+Epoch: 197
+	MSE: 678.0916737263527
+	Training Correct: 78.392%
+	General Correct: 76.825%
+Epoch: 198
+	MSE: 672.2531237177992
+	Training Correct: 77.717%
+	General Correct: 77.475%
+Epoch: 199
+	MSE: 630.0294772305951
+	Training Correct: 77.65%
+	General Correct: 78.375%
+Epoch: 200
+	MSE: 607.1201965580113
+	Training Correct: 77.358%
+	General Correct: 78.625%
+Epoch: 201
+	MSE: 666.7588320697297
+	Training Correct: 77.8%
+	General Correct: 76.75%
+Epoch: 202
+	MSE: 643.4582621619895
+	Training Correct: 77.867%
+	General Correct: 77.45%
+Epoch: 203
+	MSE: 654.0401606778073
+	Training Correct: 77.367%
+	General Correct: 77.175%
+Epoch: 204
+	MSE: 705.5473392183263
+	Training Correct: 77.708%
+	General Correct: 76.7%
+Epoch: 205
+	MSE: 669.7924171557815
+	Training Correct: 77.742%
+	General Correct: 77.25%
+Epoch: 206
+	MSE: 640.0705074770082
+	Training Correct: 77.45%
+	General Correct: 77.15%
+Epoch: 207
+	MSE: 659.6714827577781
+	Training Correct: 78.125%
+	General Correct: 76.625%
+Epoch: 208
+	MSE: 640.7289662803173
+	Training Correct: 77.883%
+	General Correct: 77.825%
+Epoch: 209
+	MSE: 649.1737410210013
+	Training Correct: 77.808%
+	General Correct: 78.2%
+Epoch: 210
+	MSE: 657.7233083810615
+	Training Correct: 77.667%
+	General Correct: 77.3%
+Epoch: 211
+	MSE: 641.3225511837584
+	Training Correct: 77.6%
+	General Correct: 78.525%
+Epoch: 212
+	MSE: 681.2745213124426
+	Training Correct: 78.067%
+	General Correct: 76.4%
+Epoch: 213
+	MSE: 618.0950851855414
+	Training Correct: 77.783%
+	General Correct: 78.4%
+Epoch: 214
+	MSE: 661.3825415098048
+	Training Correct: 77.858%
+	General Correct: 76.7%
+Epoch: 215
+	MSE: 644.1963255151895
+	Training Correct: 77.9%
+	General Correct: 77.85%
+Epoch: 216
+	MSE: 667.8202704541544
+	Training Correct: 78.033%
+	General Correct: 76.55%
+Epoch: 217
+	MSE: 641.5818195603686
+	Training Correct: 77.517%
+	General Correct: 78.1%
+Epoch: 218
+	MSE: 641.6820253335069
+	Training Correct: 78.367%
+	General Correct: 77.9%
+Epoch: 219
+	MSE: 689.2061341804015
+	Training Correct: 78.233%
+	General Correct: 76.425%
+Epoch: 220
+	MSE: 652.78511815676
+	Training Correct: 78.017%
+	General Correct: 77.925%
+Epoch: 221
+	MSE: 672.3126460473194
+	Training Correct: 77.508%
+	General Correct: 77.2%
+Epoch: 222
+	MSE: 671.5199429671634
+	Training Correct: 78.017%
+	General Correct: 76.625%
+Epoch: 223
+	MSE: 678.2647855391145
+	Training Correct: 78.075%
+	General Correct: 76.275%
+Epoch: 224
+	MSE: 627.1426768787641
+	Training Correct: 77.742%
+	General Correct: 78.9%
+Epoch: 225
+	MSE: 683.6251196728911
+	Training Correct: 78.133%
+	General Correct: 76.95%
+Epoch: 226
+	MSE: 654.4926418432597
+	Training Correct: 78.533%
+	General Correct: 77.7%
+Epoch: 227
+	MSE: 670.8791774318094
+	Training Correct: 77.833%
+	General Correct: 77.125%
+Epoch: 228
+	MSE: 665.3871488511986
+	Training Correct: 77.775%
+	General Correct: 76.775%
+Epoch: 229
+	MSE: 612.5752540372947
+	Training Correct: 77.258%
+	General Correct: 78.7%
+Epoch: 230
+	MSE: 638.093129736978
+	Training Correct: 77.783%
+	General Correct: 77.875%
+Epoch: 231
+	MSE: 670.2598517882706
+	Training Correct: 78.158%
+	General Correct: 76.95%
+Epoch: 232
+	MSE: 653.2283331708753
+	Training Correct: 77.942%
+	General Correct: 77.4%
+Epoch: 233
+	MSE: 631.8912369314892
+	Training Correct: 77.742%
+	General Correct: 78.45%
+Epoch: 234
+	MSE: 672.0650879961687
+	Training Correct: 78.283%
+	General Correct: 76.9%
+Epoch: 235
+	MSE: 688.7483797907925
+	Training Correct: 78.2%
+	General Correct: 76.1%
+Epoch: 236
+	MSE: 627.8673976864122
+	Training Correct: 78.033%
+	General Correct: 78.65%
+Epoch: 237
+	MSE: 660.9496314120204
+	Training Correct: 77.992%
+	General Correct: 77.175%
+Epoch: 238
+	MSE: 623.5617971371827
+	Training Correct: 77.733%
+	General Correct: 78.575%
+Epoch: 239
+	MSE: 663.2817885176856
+	Training Correct: 78.367%
+	General Correct: 77.6%
+Epoch: 240
+	MSE: 674.038174599661
+	Training Correct: 78.292%
+	General Correct: 76.8%
+Epoch: 241
+	MSE: 634.0519943393576
+	Training Correct: 78.033%
+	General Correct: 78.4%
+Epoch: 242
+	MSE: 611.3867552161834
+	Training Correct: 77.567%
+	General Correct: 78.575%
+Epoch: 243
+	MSE: 670.9727184095427
+	Training Correct: 78.308%
+	General Correct: 76.6%
+Epoch: 244
+	MSE: 615.5316375842098
+	Training Correct: 78.058%
+	General Correct: 79.0%
+Epoch: 245
+	MSE: 672.9114479363044
+	Training Correct: 77.917%
+	General Correct: 77.7%
+Epoch: 246
+	MSE: 674.7743552025119
+	Training Correct: 78.542%
+	General Correct: 76.475%
+Epoch: 247
+	MSE: 629.8660558007944
+	Training Correct: 77.942%
+	General Correct: 78.45%
+Epoch: 248
+	MSE: 645.0088617953719
+	Training Correct: 78.275%
+	General Correct: 77.775%
+Epoch: 249
+	MSE: 664.9206593986975
+	Training Correct: 77.408%
+	General Correct: 77.65%
+Epoch: 250
+	MSE: 648.9236503213133
+	Training Correct: 78.117%
+	General Correct: 77.95%
+Epoch: 251
+	MSE: 644.5211628830151
+	Training Correct: 78.217%
+	General Correct: 78.05%
+Epoch: 252
+	MSE: 632.5980049623361
+	Training Correct: 77.108%
+	General Correct: 78.725%
+Epoch: 253
+	MSE: 636.8523367153971
+	Training Correct: 78.158%
+	General Correct: 78.05%
+Epoch: 254
+	MSE: 661.7666384273086
+	Training Correct: 77.95%
+	General Correct: 77.975%
+Epoch: 255
+	MSE: 618.1637358321517
+	Training Correct: 78.483%
+	General Correct: 78.475%
+Epoch: 256
+	MSE: 614.3492784375895
+	Training Correct: 78.208%
+	General Correct: 79.15%
+Epoch: 257
+	MSE: 670.7269743643595
+	Training Correct: 78.258%
+	General Correct: 77.675%
+Epoch: 258
+	MSE: 644.5580252483053
+	Training Correct: 78.0%
+	General Correct: 77.875%
+Epoch: 259
+	MSE: 649.6730545862732
+	Training Correct: 78.433%
+	General Correct: 78.2%
+Epoch: 260
+	MSE: 662.0386137144171
+	Training Correct: 78.158%
+	General Correct: 77.25%
+Epoch: 261
+	MSE: 649.7636270381796
+	Training Correct: 78.508%
+	General Correct: 78.125%
+Epoch: 262
+	MSE: 661.5617645849828
+	Training Correct: 77.767%
+	General Correct: 77.65%
+Epoch: 263
+	MSE: 679.0819345301578
+	Training Correct: 78.142%
+	General Correct: 76.375%
+Epoch: 264
+	MSE: 662.1196549813405
+	Training Correct: 78.208%
+	General Correct: 77.85%
+Epoch: 265
+	MSE: 613.8472405085955
+	Training Correct: 77.642%
+	General Correct: 78.875%
+Epoch: 266
+	MSE: 674.2334078262458
+	Training Correct: 77.933%
+	General Correct: 77.5%
+Epoch: 267
+	MSE: 660.3034571768588
+	Training Correct: 78.117%
+	General Correct: 77.825%
+Epoch: 268
+	MSE: 682.0920499340639
+	Training Correct: 78.108%
+	General Correct: 77.275%
+Epoch: 269
+	MSE: 619.2300237346792
+	Training Correct: 77.975%
+	General Correct: 78.85%
+Epoch: 270
+	MSE: 628.2922280367188
+	Training Correct: 78.0%
+	General Correct: 78.775%
+Epoch: 271
+	MSE: 624.6739224568304
+	Training Correct: 78.267%
+	General Correct: 78.475%
+Epoch: 272
+	MSE: 645.0413144842299
+	Training Correct: 78.092%
+	General Correct: 77.8%
+Epoch: 273
+	MSE: 654.3094785824012
+	Training Correct: 78.458%
+	General Correct: 77.825%
+Epoch: 274
+	MSE: 631.7301036798187
+	Training Correct: 78.075%
+	General Correct: 78.15%
+Epoch: 275
+	MSE: 654.3519747388366
+	Training Correct: 77.883%
+	General Correct: 77.65%
+Epoch: 276
+	MSE: 652.8723751673979
+	Training Correct: 78.175%
+	General Correct: 78.725%
+Epoch: 277
+	MSE: 649.4076502824306
+	Training Correct: 78.608%
+	General Correct: 78.575%
+Epoch: 278
+	MSE: 630.141964079271
+	Training Correct: 78.225%
+	General Correct: 79.175%
+Epoch: 279
+	MSE: 624.875806931255
+	Training Correct: 77.992%
+	General Correct: 78.75%
+Epoch: 280
+	MSE: 646.7118852307104
+	Training Correct: 78.375%
+	General Correct: 78.075%
+Epoch: 281
+	MSE: 652.3061141859237
+	Training Correct: 78.25%
+	General Correct: 78.75%
