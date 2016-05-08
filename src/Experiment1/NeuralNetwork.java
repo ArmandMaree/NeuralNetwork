@@ -15,16 +15,17 @@ public class NeuralNetwork {
 	private boolean hardMatch = true; // must match one of the given targets
 	private int numCorrect = 0;
 	private double trainingAccuracy = 0.99;
-	private double  learningRate = 0.2;
-	private double momentum = 0.9;
+	private double  learningRate = 0.3;
+	private double momentum = 0.3;
 	private double meanSquareError = 0.0;
-	private ArrayList<Double> mse = new ArrayList<>(3);
+	private ArrayList<Double> mse;
 
 	public NeuralNetwork (int[] topology) {
 		Random generator = new Random();
 		network = new ArrayList<>();
 		weights = new ArrayList<>();
 		deltaWeights = new ArrayList<>();
+		mse = new ArrayList<>(3);
 
 		for (int i = 0; i < 3; i++) {
 			mse.add(0.0);
@@ -88,6 +89,27 @@ public class NeuralNetwork {
 		meanSquareError = 0.0;
 	}
 
+	public double[] getExtremeWeights() {
+		double max = Double.MIN_VALUE;
+		double min = Double.MAX_VALUE;
+
+		for (int i = 0; i < weights.size(); i++) {
+			for (int j = 0; j < weights.get(i).size(); j++) {
+				for (int k = 0; k < weights.get(i).get(j).size(); k++) {
+					if (weights.get(i).get(j).get(k) > max)
+						max = weights.get(i).get(j).get(k);
+
+					if(weights.get(i).get(j).get(k) < min)
+						min = weights.get(i).get(j).get(k);
+				}
+			}
+		}
+
+		double[] tmp = {min, max};
+
+		return tmp;
+	}
+
 	public void feedForward (ArrayList<Double> distortedImage) {
 		char letter = (char)Math.floor(distortedImage.get(0));
 
@@ -128,14 +150,8 @@ public class NeuralNetwork {
 		}
 
 		if (matches) {
-//			System.out.println("MATCHED LETTER '" + letter + "' at index " + matchingIndex);
 			numCorrect++; // letter was correctly and uniformly identified
 		}
-
-//		if (matches && (letter == 'A' || letter == 'E' || letter == 'O' || letter == 'U' || letter == 'I'))
-//			System.out.println("MATCHED LETTER '" + letter + "' at index " + matchingIndex);
-//		else if (matches)
-//			System.out.println("NOT MATCHED LETTER '" + letter + "' at index " + matchingIndex);
 	}
 
 	private double activation (int layer, int neuron) {
@@ -191,7 +207,7 @@ public class NeuralNetwork {
 	public void backPropagation (ArrayList<Double> distortedImage) {
 		char letter = (char)Math.floor(distortedImage.get(0));
 		int matchingIndex = getMatchingIndex(letter);
-		int outputLayerIndex = 2;
+		int outputLayerIndex = network.size() - 1;
 		ArrayList<Double> errorSignals = new ArrayList<>();
 
 		for (int i = 0; i < network.get(outputLayerIndex).size(); i++) { // iterate all output neurons
@@ -205,47 +221,44 @@ public class NeuralNetwork {
 			errorSignals.add(errorSignal);
 
 			for (int j = 0; j < network.get(outputLayerIndex - 1).size(); j++) { // iterate second last layer
-				double oldWeightJI = weights.get(outputLayerIndex - 1).get(j).get(i);
-				double valueOfJ = network.get(outputLayerIndex - 1).get(j);
-				double oldDeltaJI = deltaWeights.get(outputLayerIndex - 1).get(j).get(i);
-				double newDeltaJI = -1.0 * learningRate * errorSignal * valueOfJ;
-				double newWeightJI = oldWeightJI + newDeltaJI + momentum * oldDeltaJI;
-
-				deltaWeights.get(outputLayerIndex - 1).get(j).set(i, newDeltaJI);
-				weights.get(outputLayerIndex - 1).get(j).set(i, newWeightJI);
+				setNewWeights(outputLayerIndex - 1, j, i, errorSignal);
 			}
 		}
 
-
-
 		for (int i = network.size() - 2; i > 0; i--) { // iterate all hidden layers
-			ArrayList<Double> tmpErrorSignals = null;
+			ArrayList<Double> tmpErrorSignals = new ArrayList<>();
 
 			for (int j = 0; j < network.get(i).size() - 1; j++) { // iterate all neurons at level at i
-				tmpErrorSignals = new ArrayList<>();
 				double errorSignal = 0.0;
+				int nextLayerLastNeuron = network.get(i + 1).size() - 1;
 
-				for (int k = 0; k < network.get(i + 1).size(); k++) { // iterate neurons in next level to calculate error signal
+				for (int k = 0; k < nextLayerLastNeuron; k++) { // iterate neurons in next level to calculate error signal
 					errorSignal += errorSignals.get(k) * weights.get(i).get(j).get(k) * (1 - network.get(i).get(j)) * network.get(i).get(j);
 				}
+
+				if (i == network.size() - 2)
+					errorSignal += errorSignals.get(nextLayerLastNeuron) * weights.get(i).get(j).get(nextLayerLastNeuron) * (1 - network.get(i).get(j)) * network.get(i).get(j);
 
 				tmpErrorSignals.add(errorSignal);
 
 				for (int k = 0; k < network.get(i - 1).size(); k++) { // iterate previous layer
-					//System.out.println(weights.get(i - 1).get(k).size());
-					double oldWeightKJ = weights.get(i - 1).get(k).get(j);
-					double valueOfK = network.get(i - 1).get(k);
-					double oldDeltaKJ = deltaWeights.get(i - 1).get(k).get(j);
-					double newDeltaKJ = -1.0 * learningRate * errorSignal * valueOfK;
-					double newWeightKJ = oldWeightKJ + newDeltaKJ + momentum * oldDeltaKJ;
-
-					deltaWeights.get(i - 1).get(k).set(j, newDeltaKJ);
-					weights.get(i - 1).get(k).set(j, newWeightKJ);
+					setNewWeights(i - 1, k, j, errorSignal);
 				}
 			}
 
 			errorSignals = tmpErrorSignals;
 		}
+	}
+
+	private void setNewWeights(int layer, int neuron, int weight, double errorSignal) {
+		double oldWeightKJ = weights.get(layer).get(neuron).get(weight);
+		double valueOfK = network.get(layer).get(neuron);
+		double oldDeltaKJ = deltaWeights.get(layer).get(neuron).get(weight);
+		double newDeltaKJ = -1.0 * learningRate * errorSignal * valueOfK;
+		double newWeightKJ = oldWeightKJ + newDeltaKJ + momentum * oldDeltaKJ;
+
+		deltaWeights.get(layer).get(neuron).set(weight, newDeltaKJ);
+		weights.get(layer).get(neuron).set(weight, newWeightKJ);
 	}
 
 	public void log(long epoch, double trainCorrect, double generalCorrect) {
@@ -264,7 +277,29 @@ public class NeuralNetwork {
 		out.println("\tMSE: " + meanSquareError);
 		out.println("\tTraining Correct: " + (Math.round (trainCorrect * 100000.0) / 1000.0) + "%");
 		out.println("\tGeneral Correct: " + (Math.round (generalCorrect * 100000.0) / 1000.0) + "%");
-		
+
+		out.close();
+	}
+
+	public void logCSV(long epoch, double trainCorrect, double generalCorrect) {
+		PrintWriter out = null;
+
+		try {
+			out = new PrintWriter(new FileOutputStream("results.csv", true));
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("'results.csv' could not be found.");
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		out.printf("" + epoch);
+		out.printf("," + (100 - Math.round (trainCorrect * 100000.0) / 1000.0));
+		out.printf("," + (100 - Math.round (generalCorrect * 100000.0) / 1000.0));
+		out.printf("," + (network.size() - 2));
+		out.printf("," + learningRate);
+		out.println("," + momentum);
+
 		out.close();
 	}
 }

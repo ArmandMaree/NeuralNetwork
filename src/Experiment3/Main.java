@@ -50,21 +50,20 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		int[] topology = {distortedImages.get(0).size() - 1, distortedImages.get(0).size() - 1, 26};
+		int[] topology = {distortedImages.get(0).size() - 1, 40, 26};
 		NeuralNetwork nn = new NeuralNetwork(topology);
-//		char[] targets = {'A', 'E', 'O', 'U', 'I'}; // , 'E', 'O', 'U', 'I'
-//		nn.setTargets(targets);
 
 		normalize(distortedImages, min, max);
 		boolean stop = false; // debugging stop case
-		boolean noStop = true; // carry on until a good solution is found
+		boolean noStop = false; // carry on until a good solution is found
 		double avgMSE = 0.0;
+		String stopCondition = "";
 
 		try {
 			Files.delete(FileSystems.getDefault().getPath("NNStats.txt"));
 		} catch (Exception ignored) {}
 
-		for (long i = 0; (i < MAX_EPOCH && !stop) || noStop; i++) {
+		for (long i = 0; i < MAX_EPOCH && !stop; i++) {
 			System.out.println("Epoch " + (i + 1));
 			shuffle(distortedImages);
 			nn.init();
@@ -80,19 +79,21 @@ public class Main {
 
 			nn.init();
 
-			for (int j = (int)Math.floor(distortedImages.size() * 0.6); j < Math.ceil(distortedImages.size() * 0.8) && !stop; j++) {
+			for (int j = (int) Math.floor(distortedImages.size() * 0.6); j < Math.ceil(distortedImages.size() * 0.8) && !stop; j++) {
 				nn.feedForward(distortedImages.get(j));
 			}
 
 			double generalCorrect = nn.getNumCorrect() / (distortedImages.size() * 0.2);
 			nn.log(i + 1, trainCorrect, generalCorrect);
 
-			if (generalCorrect >= nn.getTrainingAccuracy())
-				break;
+			if (generalCorrect >= nn.getTrainingAccuracy()) {
+				stop = true;
+				stopCondition = "Training accuracy reached: " + (Math.round(generalCorrect * 100000.0) / 1000.0) + "%";
+			}
 
 			nn.init();
 
-			for (int j = (int)Math.floor(distortedImages.size() * 0.8); j < distortedImages.size() && !stop; j++) {
+			for (int j = (int) Math.floor(distortedImages.size() * 0.8); j < distortedImages.size(); j++) {
 				nn.feedForward(distortedImages.get(j));
 			}
 
@@ -100,11 +101,17 @@ public class Main {
 			double variance = nn.getMeanSquareError() / (distortedImages.size() * 0.2);
 			double stdDeviation = Math.sqrt(variance);
 
-			System.out.println("\tMSE: " + nn.getMeanSquareError() + "   Percentage correct: " + (Math.round ((nn.getNumCorrect() / (distortedImages.size() * 0.2)) * 100000.0) / 1000.0) + "%");
+			System.out.println("\tAVGMSE+STDDEV:\t" + (Math.round((avgMSE + stdDeviation) * 1000.0) / 1000.0));
+			System.out.println("\tMSE:\t\t" + (Math.round(nn.getMeanSquareError() * 1000.0) / 1000.0));
+			System.out.println("\tPercentage correct: " + (Math.round((nn.getNumCorrect() / (distortedImages.size() * 0.2)) * 100000.0) / 1000.0) + "%");
 
-			if (avgMSE + stdDeviation < nn.getMeanSquareError())
-				break;
+			if (avgMSE + stdDeviation < nn.getMeanSquareError()) {
+				stop = true;
+				stopCondition = "Overfitting occurred";
+			}
 		}
+
+		System.out.println("\nStopping condition: " + stopCondition + ".");
 	}
 
 	public static void normalize(ArrayList<ArrayList<Double>> distortedImages, int min, int max) {
